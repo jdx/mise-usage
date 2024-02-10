@@ -1,8 +1,8 @@
 <div align="center">
 
-# asdf-<YOUR TOOL> [![Build](https://github.com/<YOUR GITHUB USERNAME>/asdf-<YOUR TOOL>/actions/workflows/build.yml/badge.svg)](https://github.com/<YOUR GITHUB USERNAME>/asdf-<YOUR TOOL>/actions/workflows/build.yml) [![Lint](https://github.com/<YOUR GITHUB USERNAME>/asdf-<YOUR TOOL>/actions/workflows/lint.yml/badge.svg)](https://github.com/<YOUR GITHUB USERNAME>/asdf-<YOUR TOOL>/actions/workflows/lint.yml)
+# mise-usage [![Build](https://github.com/jdx/mise-usage/actions/workflows/build.yml/badge.svg)](https://github.com/jdx/mise-usage/actions/workflows/build.yml) [![Lint](https://github.com/jdx/mise-usage/actions/workflows/lint.yml/badge.svg)](https://github.com/jdx/mise-usage/actions/workflows/lint.yml)
 
-[<YOUR TOOL>](<TOOL HOMEPAGE>) plugin for the [asdf version manager](https://asdf-vm.com).
+[usage](https://usage.jdx.dev) plugin for the [mise version manager](https://mise.jdx.dev).
 
 </div>
 
@@ -25,36 +25,36 @@
 Plugin:
 
 ```shell
-asdf plugin add <YOUR TOOL>
+mise plugin add usage
 # or
-asdf plugin add <YOUR TOOL> https://github.com/<YOUR GITHUB USERNAME>/asdf-<YOUR TOOL>.git
+mise plugin add usage https://github.com/jdx/mise-usage.git
 ```
 
-<YOUR TOOL>:
+usage:
 
 ```shell
 # Show all installable versions
-asdf list-all <YOUR TOOL>
+mise list-all usage
 
 # Install specific version
-asdf install <YOUR TOOL> latest
+mise install usage latest
 
 # Set a version globally (on your ~/.tool-versions file)
-asdf global <YOUR TOOL> latest
+mise global usage latest
 
-# Now <YOUR TOOL> commands are available
-<TOOL CHECK>
+# Now usage commands are available
+usage --version
 ```
 
-Check [asdf](https://github.com/asdf-vm/asdf) readme for more instructions on how to
+Check [mise](https://github.com/mise-vm/mise) readme for more instructions on how to
 install & manage versions.
 
 # Contributing
 
 Contributions of any kind welcome! See the [contributing guide](contributing.md).
 
-[Thanks goes to these contributors](https://github.com/<YOUR GITHUB USERNAME>/asdf-<YOUR TOOL>/graphs/contributors)!
+[Thanks goes to these contributors](https://github.com/jdx/mise-usage/graphs/contributors)!
 
 # License
 
-See [LICENSE](LICENSE) © [<YOUR NAME>](https://github.com/<YOUR GITHUB USERNAME>/)
+See [LICENSE](LICENSE) © [jdx](https://github.com/jdx/)

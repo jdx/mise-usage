@@ -2,13 +2,12 @@
 
 set -euo pipefail
 
-# TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for <YOUR TOOL>.
-GH_REPO="<TOOL REPO>"
-TOOL_NAME="<YOUR TOOL>"
-TOOL_TEST="<TOOL CHECK>"
+GH_REPO="https://github.com/jdx/usage"
+TOOL_NAME="usage"
+TOOL_TEST="usage --version"
 
 fail() {
-	echo -e "asdf-$TOOL_NAME: $*"
+	echo -e "mise-$TOOL_NAME: $*"
 	exit 1
 }
 
@@ -41,8 +40,25 @@ download_release() {
 	version="$1"
 	filename="$2"
 
-	# TODO: Adapt the release URL convention for <YOUR TOOL>
-	url="$GH_REPO/archive/v${version}.tar.gz"
+	local arch os
+  arch=$(uname -m | tr '[:upper:]' '[:lower:]')
+  os=$(uname -s | tr '[:upper:]' '[:lower:]')
+  case "${os}" in
+    darwin)
+			arch="universal"
+			os="apple-darwin"
+			;;
+    linux)
+  		libc=$(ldd --version 2>&1 | grep -q musl && echo musl || echo gnu)
+    	os="unknown-linux-$libc"
+      ;;
+    *)
+      fail "Could not determine release URL"
+      ;;
+  esac
+
+
+  url="$GH_REPO/releases/download/v${version}/usage-$arch-$os.tar.gz"
 
 	echo "* Downloading $TOOL_NAME release $version..."
 	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
@@ -54,12 +70,12 @@ install_version() {
 	local install_path="${3%/bin}/bin"
 
 	if [ "$install_type" != "version" ]; then
-		fail "asdf-$TOOL_NAME supports release installs only"
+		fail "mise-$TOOL_NAME supports release installs only"
 	fi
 
 	(
 		mkdir -p "$install_path"
-		cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
+		cp -vr "$ASDF_DOWNLOAD_PATH"/* "$install_path"
 
 		# TODO: Assert <YOUR TOOL> executable exists.
 		local tool_cmd
