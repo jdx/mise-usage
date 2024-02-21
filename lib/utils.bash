@@ -41,23 +41,22 @@ download_release() {
 	filename="$2"
 
 	local arch os
-  arch=$(uname -m | tr '[:upper:]' '[:lower:]')
-  os=$(uname -s | tr '[:upper:]' '[:lower:]')
-  case "${os}" in
-    darwin)
-			arch="universal"
-			os="apple-darwin"
-			;;
-    linux)
-			os="unknown-linux-musl"
-      ;;
-    *)
-      fail "Could not determine release URL"
-      ;;
-  esac
+	arch=$(uname -m | tr '[:upper:]' '[:lower:]')
+	os=$(uname -s | tr '[:upper:]' '[:lower:]')
+	case "${os}" in
+	darwin)
+		arch="universal"
+		os="apple-darwin"
+		;;
+	linux)
+		os="unknown-linux-musl"
+		;;
+	*)
+		fail "Could not determine release URL"
+		;;
+	esac
 
-
-  url="$GH_REPO/releases/download/v${version}/usage-$arch-$os.tar.gz"
+	url="$GH_REPO/releases/download/v${version}/usage-$arch-$os.tar.gz"
 
 	echo "* Downloading $TOOL_NAME release $version..."
 	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
