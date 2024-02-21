@@ -49,8 +49,7 @@ download_release() {
 			os="apple-darwin"
 			;;
     linux)
-  		libc=$(ldd --version 2>&1 | grep -q musl && echo musl || echo gnu)
-    	os="unknown-linux-$libc"
+			os="unknown-linux-musl"
       ;;
     *)
       fail "Could not determine release URL"
